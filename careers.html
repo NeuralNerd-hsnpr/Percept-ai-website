@@ -380,6 +380,43 @@
             gap: 1.5rem;
         }
 
+        .file-upload {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 1.5rem;
+            background: white;
+            border: 2px dashed #e0e0e0;
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .file-upload input[type="file"]:hover + .file-upload-label,
+        .file-upload input[type="file"]:focus + .file-upload-label {
+            border-color: var(--primary);
+            background: rgba(50, 170, 39, 0.02);
+        }
+
+        .file-name {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-top: 0.5rem;
+        }
+
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -616,6 +653,33 @@
                                     </div>
                                 </div>
 
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="linkedin-jds1">LinkedIn Profile</label>
+                                        <input type="url" id="linkedin-jds1" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="github-jds1">GitHub Profile</label>
+                                        <input type="url" id="github-jds1" name="github" placeholder="https://github.com/yourprofile">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cv-jds1">Upload CV (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cv-jds1" name="cv" accept=".pdf,.doc,.docx" required>
+                                        <label for="cv-jds1" class="file-upload-label">📄 Click to upload your CV</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cover-jds1">Upload Cover Letter (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cover-jds1" name="cover" accept=".pdf,.doc,.docx" required>
+                                        <label for="cover-jds1" class="file-upload-label">📄 Click to upload your cover letter</label>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="message-jds1">Additional Information</label>
                                     <textarea id="message-jds1" name="message" placeholder="Tell us anything else you'd like us to know about your qualifications..."></textarea>
@@ -711,6 +775,33 @@
                                     </div>
                                 </div>
 
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="linkedin-sds">LinkedIn Profile</label>
+                                        <input type="url" id="linkedin-sds" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="github-sds">GitHub Profile</label>
+                                        <input type="url" id="github-sds" name="github" placeholder="https://github.com/yourprofile">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cv-sds">Upload CV (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cv-sds" name="cv" accept=".pdf,.doc,.docx" required>
+                                        <label for="cv-sds" class="file-upload-label">📄 Click to upload your CV</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cover-sds">Upload Cover Letter (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cover-sds" name="cover" accept=".pdf,.doc,.docx" required>
+                                        <label for="cover-sds" class="file-upload-label">📄 Click to upload your cover letter</label>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="message-sds">Additional Information</label>
                                     <textarea id="message-sds" name="message" placeholder="Tell us about your experience and achievements..."></textarea>
@@ -803,6 +894,33 @@
                                     <div class="form-group">
                                         <label for="location-mlops">Location *</label>
                                         <input type="text" id="location-mlops" name="location" placeholder="Your current city" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="linkedin-mlops">LinkedIn Profile</label>
+                                        <input type="url" id="linkedin-mlops" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="github-mlops">GitHub Profile</label>
+                                        <input type="url" id="github-mlops" name="github" placeholder="https://github.com/yourprofile">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cv-mlops">Upload CV (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cv-mlops" name="cv" accept=".pdf,.doc,.docx" required>
+                                        <label for="cv-mlops" class="file-upload-label">📄 Click to upload your CV</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cover-mlops">Upload Cover Letter (PDF or DOC) *</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="cover-mlops" name="cover" accept=".pdf,.doc,.docx" required>
+                                        <label for="cover-mlops" class="file-upload-label">📄 Click to upload your cover letter</label>
                                     </div>
                                 </div>
 
