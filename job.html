@@ -123,28 +123,14 @@
             box-shadow: 0 5px 15px rgba(50, 170, 39, 0.3);
         }
 
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: var(--dark);
-            border-radius: 3px;
-        }
-
         /* Page Header Hero */
         .page-header {
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, rgba(50, 170, 39, 0.1) 0%, rgba(22, 36, 21, 0.05) 100%),
-                        url('https://raw.githubusercontent.com/NeuralNerd-hsnpr/Percept-ai-website/main/Images/main-cover.png') center/cover no-repeat;
+                        url('https://raw.githubusercontent.com/NeuralNerd-hsnpr/Percept-ai-website/main/Images/team2.png') center/cover no-repeat;
             position: relative;
             padding: 100px 2rem 2rem;
             overflow: hidden;
@@ -191,7 +177,7 @@
         }
 
         .jobs-container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -214,10 +200,10 @@
             margin-right: auto;
         }
 
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
+        .jobs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .job-card {
@@ -231,17 +217,29 @@
 
         .job-card:hover {
             box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-            transform: translateY(-5px);
         }
 
         .job-header {
-            padding: 2.5rem;
+            padding: 2rem 2.5rem;
             background: linear-gradient(135deg, rgba(50, 170, 39, 0.05) 0%, rgba(50, 170, 39, 0.02) 100%);
-            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: var(--transition);
+        }
+
+        .job-header:hover {
+            background: linear-gradient(135deg, rgba(50, 170, 39, 0.08) 0%, rgba(50, 170, 39, 0.04) 100%);
+        }
+
+        .job-header-left {
+            flex: 1;
         }
 
         .job-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--dark);
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -250,12 +248,33 @@
         .job-meta {
             display: flex;
             gap: 2rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--primary);
             font-weight: 500;
         }
 
+        .job-toggle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            width: 30px;
+            text-align: center;
+        }
+
+        .job-toggle.active {
+            transform: rotate(180deg);
+        }
+
         .job-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 2.5rem;
+        }
+
+        .job-content.open {
+            max-height: 2000px;
             padding: 2.5rem;
         }
 
@@ -264,7 +283,7 @@
         }
 
         .job-section-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--dark);
             margin-bottom: 1rem;
             font-weight: 600;
@@ -272,7 +291,7 @@
         }
 
         .job-description {
-            font-size: 1.05rem;
+            font-size: 1rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
@@ -307,7 +326,7 @@
         }
 
         .form-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--dark);
             margin-bottom: 1.5rem;
             font-weight: 600;
@@ -353,35 +372,6 @@
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
-        }
-
-        .file-upload {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .file-upload input[type="file"] {
-            position: absolute;
-            left: -9999px;
-        }
-
-        .file-upload-label {
-            display: block;
-            padding: 2rem;
-            background: white;
-            border: 2px dashed #e0e0e0;
-            border-radius: var(--radius);
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .file-upload input[type="file"]:hover + .file-upload-label {
-            border-color: var(--primary);
-            background: rgba(50, 170, 39, 0.02);
         }
 
         .form-row {
@@ -481,27 +471,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                transition: left 0.3s ease;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -509,6 +478,7 @@
 
             .page-header {
                 padding: 120px 1.5rem 2rem;
+                min-height: 50vh;
             }
 
             .page-header-content {
@@ -522,6 +492,15 @@
             .job-meta {
                 flex-direction: column;
                 gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .job-title {
+                font-size: 1.2rem;
+            }
+
+            .job-header {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -538,11 +517,6 @@
                 <li><a href="careers.html" class="active">Careers</a></li>
                 <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
             </ul>
-            <div class="mobile-menu" id="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
@@ -558,18 +532,21 @@
     <section class="jobs">
         <div class="jobs-container">
             <h2 class="section-title">Available Positions</h2>
-            <p class="section-subtitle">We're hiring talented professionals to join our dynamic team. If you're passionate about AI and innovation, we'd love to hear from you.</p>
+            <p class="section-subtitle">We're hiring talented professionals to join our dynamic team. Click on any position to learn more and apply.</p>
 
-            <div class="jobs-grid">
+            <div class="jobs-list">
                 
                 <!-- Job 1: Junior Data Scientist -->
                 <div class="job-card">
-                    <div class="job-header">
-                        <h3 class="job-title">Junior Data Scientist</h3>
-                        <div class="job-meta">
-                            <span>📍 Remote, World Wide</span>
-                            <span>💼 Full-time</span>
+                    <div class="job-header" onclick="toggleJob(this)">
+                        <div class="job-header-left">
+                            <h3 class="job-title">Junior Data Scientist</h3>
+                            <div class="job-meta">
+                                <span>📍 Frankfurt, Germany</span>
+                                <span>💼 Full-time</span>
+                            </div>
                         </div>
+                        <div class="job-toggle">▼</div>
                     </div>
                     <div class="job-content">
                         <div class="job-section">
@@ -640,22 +617,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="cv-jds">Upload CV (PDF or DOC) *</label>
-                                    <div class="file-upload">
-                                        <input type="file" id="cv-jds" name="cv" accept=".pdf,.doc,.docx" required>
-                                        <label for="cv-jds" class="file-upload-label">📎 Click to upload your CV</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="cover-jds">Cover Letter (PDF or DOC) *</label>
-                                    <div class="file-upload">
-                                        <input type="file" id="cover-jds" name="cover" accept=".pdf,.doc,.docx" required>
-                                        <label for="cover-jds" class="file-upload-label">📎 Click to upload your cover letter</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="message-jds">Additional Information</label>
                                     <textarea id="message-jds" name="message" placeholder="Tell us anything else you'd like us to know about your qualifications..."></textarea>
                                 </div>
@@ -668,12 +629,15 @@
 
                 <!-- Job 2: Senior Data Scientist -->
                 <div class="job-card">
-                    <div class="job-header">
-                        <h3 class="job-title">Senior Data Scientist</h3>
-                        <div class="job-meta">
-                            <span>📍 Remote, World Wide</span>
-                            <span>💼 Full-time</span>
+                    <div class="job-header" onclick="toggleJob(this)">
+                        <div class="job-header-left">
+                            <h3 class="job-title">Senior Data Scientist</h3>
+                            <div class="job-meta">
+                                <span>📍 Frankfurt, Germany</span>
+                                <span>💼 Full-time</span>
+                            </div>
                         </div>
+                        <div class="job-toggle">▼</div>
                     </div>
                     <div class="job-content">
                         <div class="job-section">
@@ -748,22 +712,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="cv-sds">Upload CV (PDF or DOC) *</label>
-                                    <div class="file-upload">
-                                        <input type="file" id="cv-sds" name="cv" accept=".pdf,.doc,.docx" required>
-                                        <label for="cv-sds" class="file-upload-label">📎 Click to upload your CV</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="cover-sds">Cover Letter (PDF or DOC) *</label>
-                                    <div class="file-upload">
-                                        <input type="file" id="cover-sds" name="cover" accept=".pdf,.doc,.docx" required>
-                                        <label for="cover-sds" class="file-upload-label">📎 Click to upload your cover letter</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="message-sds">Additional Information</label>
                                     <textarea id="message-sds" name="message" placeholder="Tell us about your experience and achievements..."></textarea>
                                 </div>
@@ -776,12 +724,15 @@
 
                 <!-- Job 3: MLOps Engineer -->
                 <div class="job-card">
-                    <div class="job-header">
-                        <h3 class="job-title">MLOps Engineer</h3>
-                        <div class="job-meta">
-                            <span>📍 Remote, World Wide</span>
-                            <span>💼 Full-time</span>
+                    <div class="job-header" onclick="toggleJob(this)">
+                        <div class="job-header-left">
+                            <h3 class="job-title">MLOps Engineer</h3>
+                            <div class="job-meta">
+                                <span>📍 Frankfurt, Germany</span>
+                                <span>💼 Full-time</span>
+                            </div>
                         </div>
+                        <div class="job-toggle">▼</div>
                     </div>
                     <div class="job-content">
                         <div class="job-section">
@@ -805,4 +756,37 @@
                         </div>
 
                         <div class="job-section">
-                            <h4 class="
+                            <h4 class="job-section-title">Required Skills</h4>
+                            <ul class="skills-list">
+                                <li>3+ years of experience in DevOps, infrastructure, or MLOps</li>
+                                <li>Strong proficiency in Python and bash scripting</li>
+                                <li>Experience with containerization (Docker) and orchestration (Kubernetes)</li>
+                                <li>Knowledge of CI/CD tools and practices (Jenkins, GitLab CI, GitHub Actions)</li>
+                                <li>Familiarity with cloud platforms (AWS, GCP, Azure)</li>
+                                <li>Understanding of machine learning workflows and model lifecycle</li>
+                                <li>Strong problem-solving and communication skills</li>
+                                <li>Bachelor's degree in Computer Science or related field</li>
+                            </ul>
+                        </div>
+
+                        <div class="job-section">
+                            <h4 class="job-section-title">Nice to Have</h4>
+                            <ul class="skills-list">
+                                <li>Experience with ML frameworks and model serving (TensorFlow, PyTorch)</li>
+                                <li>Knowledge of MLOps platforms (Kubeflow, MLflow, DVC)</li>
+                                <li>Experience with monitoring and observability tools (Prometheus, ELK)</li>
+                                <li>Familiarity with Terraform or Infrastructure as Code</li>
+                                <li>Experience with data pipelines and workflow orchestration</li>
+                            </ul>
+                        </div>
+
+                        <div class="application-form">
+                            <h4 class="form-title">Apply Now</h4>
+                            <p style="margin-bottom: 1.5rem; color: var(--text-dark);">Interested in scaling our ML infrastructure? Submit your application below.</p>
+                            <form class="job-application-form" data-position="MLOps Engineer">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name-mlops">Full Name *</label>
+                                        <input type="text" id="name-mlops" name="name" placeholder="Alex Johnson" required>
+                                    </div>
+                                    <div class="form-group">
