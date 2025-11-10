@@ -1,0 +1,45 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# API Keys & Secrets
+secrets.json
+config.json
+credentials.json
+*.key
+*.pem
+
+# Node modules (if using Node)
+node_modules/
+package-lock.json
+
+# Python (if using Python backend)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Sensitive data
+private/
+secrets/
