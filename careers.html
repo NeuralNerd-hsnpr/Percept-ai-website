@@ -971,6 +971,17 @@
     </footer>
 
     <script>
+        // ========================================
+        // CONFIGURATION - UPDATE WITH YOUR CREDENTIALS
+        // ========================================
+        const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUDINARY_CLOUD_NAME';
+        const CLOUDINARY_UPLOAD_PRESET = 'percept_ai_uploads';
+        const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_FORM_ID';
+        const RECIPIENT_EMAIL = 'your-email@gmail.com'; // Your email to receive applications
+
+        // ========================================
+        // TOGGLE JOB SECTION - EXISTING FUNCTIONALITY
+        // ========================================
         function toggleJob(headerElement) {
             const jobCard = headerElement.parentElement;
             const jobContent = jobCard.querySelector('.job-content');
@@ -988,15 +999,206 @@
             jobToggle.classList.toggle('active');
         }
 
-        // Form submission handler
-        document.querySelectorAll('.job-application-form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const position = this.dataset.position;
-                alert(`Application for ${position} submitted successfully!`);
-                this.reset();
+        // ========================================
+        // FILE NAME DISPLAY - NEW FUNCTIONALITY
+        // ========================================
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function(e) {
+                const fileName = e.target.files[0]?.name || '';
+                const fileNameDisplay = this.parentElement.parentElement.querySelector('.file-name');
+                
+                if (fileNameDisplay && fileName) {
+                    fileNameDisplay.textContent = '✓ ' + fileName;
+                    fileNameDisplay.style.color = 'var(--success)';
+                }
             });
         });
+
+        // ========================================
+        // CLOUDINARY FILE UPLOAD - NEW FUNCTIONALITY
+        // ========================================
+        async function uploadToCloudinary(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+            try {
+                const response = await fetch(
+                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
+                    {
+                        method: 'POST',
+                        body: formData
+                    }
+                );
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error?.message || 'Upload failed');
+                }
+
+                const data = await response.json();
+                return data.secure_url;
+            } catch (error) {
+                console.error('Cloudinary upload error:', error);
+                throw new Error('File upload failed: ' + error.message);
+            }
+        }
+
+        // ========================================
+        // FORM SUBMISSION HANDLER - ENHANCED WITH BACKEND
+        // ========================================
+        document.querySelectorAll('.job-application-form').forEach(form => {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formId = this.dataset.formId;
+                const position = this.dataset.position;
+                const statusEl = document.getElementById(`status-${formId}`);
+                const submitBtn = this.querySelector('.btn');
+                
+                // Show loading state
+                statusEl.classList.add('show', 'loading');
+                statusEl.textContent = '⏳ Uploading files and sending application...';
+                submitBtn.disabled = true;
+
+                try {
+                    // Get form data
+                    const name = this.querySelector(`input[name="name"]`).value;
+                    const email = this.querySelector(`input[name="email"]`).value;
+                    const phone = this.querySelector(`input[name="phone"]`).value;
+                    const location = this.querySelector(`input[name="location"]`).value;
+                    const linkedin = this.querySelector(`input[name="linkedin"]`).value || 'Not provided';
+                    const github = this.querySelector(`input[name="github"]`).value || 'Not provided';
+                    const message = this.querySelector(`input[name="message"]`).value || 'None';
+
+                    // Get file inputs
+                    const cvInput = this.querySelector(`input[name="cv"]`);
+                    const coverInput = this.querySelector(`input[name="cover"]`);
+
+                    // Validate files are present
+                    if (!cvInput.files[0]) {
+                        throw new Error('CV file is required');
+                    }
+                    if (!coverInput.files[0]) {
+                        throw new Error('Cover letter is required');
+                    }
+
+                    // Validate file sizes (10MB max per file)
+                    const MAX_FILE_SIZE = 10 * 1024 * 1024;
+                    if (cvInput.files[0].size > MAX_FILE_SIZE) {
+                        throw new Error('CV file is too large (max 10MB)');
+                    }
+                    if (coverInput.files[0].size > MAX_FILE_SIZE) {
+                        throw new Error('Cover letter is too large (max 10MB)');
+                    }
+
+                    statusEl.textContent = '📤 Uploading CV...';
+
+                    // Upload CV
+                    const cvUrl = await uploadToCloudinary(cvInput.files[0]);
+
+                    statusEl.textContent = '📤 Uploading cover letter...';
+
+                    // Upload Cover Letter
+                    const coverUrl = await uploadToCloudinary(coverInput.files[0]);
+
+                    statusEl.textContent = '📧 Sending application...';
+
+                    // Prepare formatted message for email
+                    const emailMessage = `
+Position Applied: ${position}
+
+--- APPLICANT INFORMATION ---
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Location: ${location}
+LinkedIn: ${linkedin}
+GitHub: ${github}
+
+--- UPLOADED DOCUMENTS ---
+CV: ${cvUrl}
+Cover Letter: ${coverUrl}
+
+--- ADDITIONAL INFORMATION ---
+${message}
+
+---
+Application submitted on: ${new Date().toLocaleString()}
+                    `.trim();
+
+                    // Send to Formspree
+                    const formDataToSend = new FormData();
+                    formDataToSend.append('name', name);
+                    formDataToSend.append('email', email);
+                    formDataToSend.append('phone', phone);
+                    formDataToSend.append('location', location);
+                    formDataToSend.append('linkedin', linkedin);
+                    formDataToSend.append('github', github);
+                    formDataToSend.append('position', position);
+                    formDataToSend.append('cv_url', cvUrl);
+                    formDataToSend.append('cover_letter_url', coverUrl);
+                    formDataToSend.append('additional_info', message);
+                    formDataToSend.append('submission_date', new Date().toISOString());
+
+                    const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+                        method: 'POST',
+                        body: formDataToSend,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.error || 'Form submission failed');
+                    }
+
+                    // Success state
+                    statusEl.classList.remove('loading');
+                    statusEl.classList.add('success');
+                    statusEl.textContent = '✓ Application submitted successfully! We\'ll review your application and get back to you soon.';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Clear file names
+                    document.querySelectorAll(`#${formId} .file-name`).forEach(el => {
+                        el.textContent = '';
+                    });
+
+                    // Re-enable button after 5 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                    }, 5000);
+
+                } catch (error) {
+                    // Error state
+                    statusEl.classList.remove('loading');
+                    statusEl.classList.add('error');
+                    statusEl.textContent = '✗ Error: ' + error.message + '. Please try again or contact us directly.';
+                    
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    
+                    console.error('Application submission error:', error);
+                }
+            });
+        });
+
+        // ========================================
+        // VALIDATION - CHECK CONFIGURATION ON PAGE LOAD
+        // ========================================
+        window.addEventListener('load', function() {
+            // Check if credentials are set
+            if (CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUDINARY_CLOUD_NAME') {
+                console.warn('⚠️ Please update CLOUDINARY_CLOUD_NAME in the script');
+            }
+            if (FORMSPREE_FORM_ID === 'YOUR_FORMSPREE_FORM_ID') {
+                console.warn('⚠️ Please update FORMSPREE_FORM_ID in the script');
+            }
+        });
+
     </script>
 </body>
 </html>
