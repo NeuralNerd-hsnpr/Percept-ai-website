@@ -1,45 +1,21 @@
-# Environment variables
-.env
-.env.local
-.env.*.local
+# This repository is public. Never commit credentials of any kind.
+# The site is static and needs no secrets; see README.md.
 
-# API Keys & Secrets
-secrets.json
-config.json
-credentials.json
+# Environment / credential files
+.env
+.env.*
 *.key
 *.pem
+secrets/
+private/
 
-# Node modules (if using Node)
-node_modules/
-package-lock.json
-
-# Python (if using Python backend)
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-venv/
-env/
-*.egg-info/
-
-# IDE & Editor files
+# OS / editor noise
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 *.swp
-*.swo
 *~
-.DS_Store
 
-# OS files
-Thumbs.db
-.DS_Store
-
-# Build outputs
-dist/
-build/
-*.log
-
-# Sensitive data
-private/
-secrets/
+# Local tooling
+node_modules/

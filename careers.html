@@ -3,548 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Percept AI Careers - Join our innovative team and build the future of AI">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io https://api.cloudinary.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="description" content="Join Percept AI - open positions in data science and MLOps.">
     <title>Careers | Percept AI</title>
-    
-    <!-- Fonts -->
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #32aa27;
-            --primary-dark: #26801d;
-            --primary-light: #41d034;
-            --dark: #162415;
-            --light: #fff;
-            --accent: #eef1ef;
-            --text-dark: #595959;
-            --danger: #ec6366;
-            --spacing: 20px;
-            --radius: 8px;
-            --transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: capitalize;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a.active {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--primary);
-            color: white !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: var(--radius);
-        }
-
-        .nav-cta::after {
-            display: none;
-        }
-
-        .nav-cta:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(50, 170, 39, 0.3);
-        }
-
-        /* Page Header Hero */
-        .page-header {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(50, 170, 39, 0.1) 0%, rgba(22, 36, 21, 0.05) 100%),
-                        url('https://raw.githubusercontent.com/NeuralNerd-hsnpr/Percept-ai-website/main/Images/team2.png') center/cover no-repeat;
-            position: relative;
-            padding: 100px 2rem 2rem;
-            overflow: hidden;
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
-        }
-
-        .page-header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            text-align: left;
-            color: white;
-            animation: fadeInUp 1s ease;
-        }
-
-        .page-header h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .page-header p {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            opacity: 0.95;
-            line-height: 1.6;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-        }
-
-        /* Jobs Section */
-        .jobs {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .jobs-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .jobs-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .job-card {
-            background: white;
-            border-radius: 12px;
-            border-left: 5px solid var(--primary);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .job-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-        }
-
-        .job-header {
-            padding: 2rem 2.5rem;
-            background: linear-gradient(135deg, rgba(50, 170, 39, 0.05) 0%, rgba(50, 170, 39, 0.02) 100%);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-            transition: var(--transition);
-        }
-
-        .job-header:hover {
-            background: linear-gradient(135deg, rgba(50, 170, 39, 0.08) 0%, rgba(50, 170, 39, 0.04) 100%);
-        }
-
-        .job-header-left {
-            flex: 1;
-        }
-
-        .job-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .job-meta {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .job-toggle {
-            font-size: 1.5rem;
-            color: var(--primary);
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            width: 30px;
-            text-align: center;
-        }
-
-        .job-toggle.active {
-            transform: rotate(180deg);
-        }
-
-        .job-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            padding: 0 2.5rem;
-        }
-
-        .job-content.open {
-            max-height: 2500px;
-            padding: 2.5rem;
-        }
-
-        .job-section {
-            margin-bottom: 2rem;
-        }
-
-        .job-section-title {
-            font-size: 1.2rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            text-transform: capitalize;
-        }
-
-        .job-description {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .skills-list, .responsibilities-list {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .skills-list li, .responsibilities-list li {
-            padding: 0.6rem 0;
-            padding-left: 1.8rem;
-            position: relative;
-            color: var(--text-dark);
-            line-height: 1.7;
-        }
-
-        .skills-list li::before, .responsibilities-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .application-form {
-            background: linear-gradient(135deg, rgba(50, 170, 39, 0.05) 0%, rgba(50, 170, 39, 0.02) 100%);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-        }
-
-        .form-title {
-            font-size: 1.2rem;
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.9rem;
-            border: 2px solid #e0e0e0;
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #ccc;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(50, 170, 39, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .file-upload {
-            position: relative;
-            display: block;
-            width: 100%;
-        }
-
-        .file-upload input[type="file"] {
-            position: absolute;
-            left: -9999px;
-        }
-
-        .file-upload-label {
-            display: block;
-            padding: 1.5rem;
-            background: white;
-            border: 2px dashed #e0e0e0;
-            border-radius: var(--radius);
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.95rem;
-        }
-
-        .file-upload input[type="file"]:hover + .file-upload-label,
-        .file-upload input[type="file"]:focus + .file-upload-label {
-            border-color: var(--primary);
-            background: rgba(50, 170, 39, 0.02);
-        }
-
-        .file-name {
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            margin-top: 0.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            cursor: pointer;
-            text-align: center;
-            font-size: 1rem;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(50, 170, 39, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem 1.5rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-content p {
-            opacity: 0.8;
-            line-height: 1.8;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .page-header {
-                padding: 120px 1.5rem 2rem;
-                min-height: 50vh;
-            }
-
-            .page-header-content {
-                text-align: center;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .job-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-                font-size: 0.85rem;
-            }
-
-            .job-title {
-                font-size: 1.2rem;
-            }
-
-            .job-header {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/forms.js" defer></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav id="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <a href="index.html" class="logo">Percept AI</a>
             <ul class="nav-links" id="navLinks">
@@ -554,12 +30,17 @@
                 <li><a href="careers.html" class="active">Careers</a></li>
                 <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
             </ul>
+            <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="page-header-content">
+    <main id="main">
+    <section class="hero hero--careers hero--short">
+        <div class="hero-content">
             <h1>Join Our Team</h1>
             <p>Build the future of AI with Percept AI. We're looking for passionate innovators to shape tomorrow's technology.</p>
         </div>
@@ -575,7 +56,7 @@
                 
                 <!-- Job 1: Junior Data Scientist -->
                 <div class="job-card">
-                    <div class="job-header" onclick="toggleJob(this)">
+                    <div class="job-header" role="button" tabindex="0" aria-expanded="false">
                         <div class="job-header-left">
                             <h3 class="job-title">Junior Data Scientist</h3>
                             <div class="job-meta">
@@ -629,8 +110,13 @@
 
                         <div class="application-form">
                             <h4 class="form-title">Apply Now</h4>
-                            <p style="margin-bottom: 1.5rem; color: var(--text-dark);">Passionate about this opportunity? Send us your details below.</p>
-                            <form class="job-application-form" data-position="Junior Data Scientist">
+                            <p class="form-intro">Passionate about this opportunity? Send us your details below.</p>
+                            <div id="fallback-jds1" class="form-fallback" hidden></div>
+                            <form class="job-application-form" data-position="Junior Data Scientist" data-form-id="jds1">
+                                <div class="hp-field" aria-hidden="true">
+                                    <label for="hp-jds1">Leave this field empty</label>
+                                    <input type="text" id="hp-jds1" name="_gotcha" tabindex="-1" autocomplete="off">
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="name-jds1">Full Name *</label>
@@ -645,7 +131,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="phone-jds1">Phone Number *</label>
-                                        <input type="tel" id="phone-jds1" name="phone" placeholder="+49 1234 567890" required>
+                                        <input type="tel" id="phone-jds1" name="phone" placeholder="+44 20 1234 5678" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="location-jds1">Location *</label>
@@ -670,6 +156,7 @@
                                         <input type="file" id="cv-jds1" name="cv" accept=".pdf,.doc,.docx" required>
                                         <label for="cv-jds1" class="file-upload-label">📄 Click to upload your CV</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -678,14 +165,23 @@
                                         <input type="file" id="cover-jds1" name="cover" accept=".pdf,.doc,.docx" required>
                                         <label for="cover-jds1" class="file-upload-label">📄 Click to upload your cover letter</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="message-jds1">Additional Information</label>
-                                    <textarea id="message-jds1" name="message" placeholder="Tell us anything else you'd like us to know about your qualifications..."></textarea>
+                                    <textarea maxlength="5000" id="message-jds1" name="message" placeholder="Tell us anything else you'd like us to know about your qualifications..."></textarea>
                                 </div>
 
-                                <button type="submit" class="btn">Submit Application</button>
+                                <p class="file-fallback form-fallback" hidden></p>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="consent-jds1" name="consent" value="yes" required>
+                                    <label for="consent-jds1">I consent to Percept AI storing my application details and documents for recruitment purposes. *</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-block">Submit Application</button>
+                                <div id="status-jds1" class="form-status" role="status" aria-live="polite"></div>
                             </form>
                         </div>
                     </div>
@@ -693,7 +189,7 @@
 
                 <!-- Job 2: Senior Data Scientist -->
                 <div class="job-card">
-                    <div class="job-header" onclick="toggleJob(this)">
+                    <div class="job-header" role="button" tabindex="0" aria-expanded="false">
                         <div class="job-header-left">
                             <h3 class="job-title">Senior Data Scientist</h3>
                             <div class="job-meta">
@@ -751,8 +247,13 @@
 
                         <div class="application-form">
                             <h4 class="form-title">Apply Now</h4>
-                            <p style="margin-bottom: 1.5rem; color: var(--text-dark);">Ready to lead our AI initiatives? Send us your details below.</p>
-                            <form class="job-application-form" data-position="Senior Data Scientist">
+                            <p class="form-intro">Ready to lead our AI initiatives? Send us your details below.</p>
+                            <div id="fallback-sds" class="form-fallback" hidden></div>
+                            <form class="job-application-form" data-position="Senior Data Scientist" data-form-id="sds">
+                                <div class="hp-field" aria-hidden="true">
+                                    <label for="hp-sds">Leave this field empty</label>
+                                    <input type="text" id="hp-sds" name="_gotcha" tabindex="-1" autocomplete="off">
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="name-sds">Full Name *</label>
@@ -767,7 +268,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="phone-sds">Phone Number *</label>
-                                        <input type="tel" id="phone-sds" name="phone" placeholder="+49 1234 567890" required>
+                                        <input type="tel" id="phone-sds" name="phone" placeholder="+44 20 1234 5678" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="location-sds">Location *</label>
@@ -792,6 +293,7 @@
                                         <input type="file" id="cv-sds" name="cv" accept=".pdf,.doc,.docx" required>
                                         <label for="cv-sds" class="file-upload-label">📄 Click to upload your CV</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -800,14 +302,23 @@
                                         <input type="file" id="cover-sds" name="cover" accept=".pdf,.doc,.docx" required>
                                         <label for="cover-sds" class="file-upload-label">📄 Click to upload your cover letter</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="message-sds">Additional Information</label>
-                                    <textarea id="message-sds" name="message" placeholder="Tell us about your experience and achievements..."></textarea>
+                                    <textarea maxlength="5000" id="message-sds" name="message" placeholder="Tell us about your experience and achievements..."></textarea>
                                 </div>
 
-                                <button type="submit" class="btn">Submit Application</button>
+                                <p class="file-fallback form-fallback" hidden></p>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="consent-sds" name="consent" value="yes" required>
+                                    <label for="consent-sds">I consent to Percept AI storing my application details and documents for recruitment purposes. *</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-block">Submit Application</button>
+                                <div id="status-sds" class="form-status" role="status" aria-live="polite"></div>
                             </form>
                         </div>
                     </div>
@@ -815,7 +326,7 @@
 
                 <!-- Job 3: MLOps Engineer -->
                 <div class="job-card">
-                    <div class="job-header" onclick="toggleJob(this)">
+                    <div class="job-header" role="button" tabindex="0" aria-expanded="false">
                         <div class="job-header-left">
                             <h3 class="job-title">MLOps Engineer</h3>
                             <div class="job-meta">
@@ -873,8 +384,13 @@
 
                         <div class="application-form">
                             <h4 class="form-title">Apply Now</h4>
-                            <p style="margin-bottom: 1.5rem; color: var(--text-dark);">Interested in scaling our ML infrastructure? Submit your application below.</p>
-                            <form class="job-application-form" data-position="MLOps Engineer">
+                            <p class="form-intro">Interested in scaling our ML infrastructure? Submit your application below.</p>
+                            <div id="fallback-mlops" class="form-fallback" hidden></div>
+                            <form class="job-application-form" data-position="MLOps Engineer" data-form-id="mlops">
+                                <div class="hp-field" aria-hidden="true">
+                                    <label for="hp-mlops">Leave this field empty</label>
+                                    <input type="text" id="hp-mlops" name="_gotcha" tabindex="-1" autocomplete="off">
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="name-mlops">Full Name *</label>
@@ -889,7 +405,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="phone-mlops">Phone Number *</label>
-                                        <input type="tel" id="phone-mlops" name="phone" placeholder="+49 1234 567890" required>
+                                        <input type="tel" id="phone-mlops" name="phone" placeholder="+44 20 1234 5678" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="location-mlops">Location *</label>
@@ -914,6 +430,7 @@
                                         <input type="file" id="cv-mlops" name="cv" accept=".pdf,.doc,.docx" required>
                                         <label for="cv-mlops" class="file-upload-label">📄 Click to upload your CV</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
@@ -922,14 +439,23 @@
                                         <input type="file" id="cover-mlops" name="cover" accept=".pdf,.doc,.docx" required>
                                         <label for="cover-mlops" class="file-upload-label">📄 Click to upload your cover letter</label>
                                     </div>
+                                    <div class="file-name" aria-live="polite"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="message-mlops">Additional Information</label>
-                                    <textarea id="message-mlops" name="message" placeholder="Tell us about your experience with MLOps..."></textarea>
+                                    <textarea maxlength="5000" id="message-mlops" name="message" placeholder="Tell us about your experience with MLOps..."></textarea>
                                 </div>
 
-                                <button type="submit" class="btn">Submit Application</button>
+                                <p class="file-fallback form-fallback" hidden></p>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="consent-mlops" name="consent" value="yes" required>
+                                    <label for="consent-mlops">I consent to Percept AI storing my application details and documents for recruitment purposes. *</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-block">Submit Application</button>
+                                <div id="status-mlops" class="form-status" role="status" aria-live="polite"></div>
                             </form>
                         </div>
                     </div>
@@ -939,7 +465,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-content">
@@ -948,257 +475,27 @@
                     <p>Building the future of artificial intelligence with innovative solutions that transform businesses and drive technological advancement.</p>
                 </div>
                 <div>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="index.html#about">About</a></li>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="careers.html">Careers</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div>
+                    <h4>Contact</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html#contact">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Legal</a></li>
+                        <li><a href="mailto:jobs@percept-ai.co.uk">jobs@percept-ai.co.uk</a></li>
+                        <li>London, United Kingdom</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Percept AI. All rights reserved.</p>
+                <p>&copy; <span data-year>2026</span> Percept AI. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        // ========================================
-        // CONFIGURATION - UPDATE WITH YOUR CREDENTIALS
-        // ========================================
-        const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUDINARY_CLOUD_NAME';
-        const CLOUDINARY_UPLOAD_PRESET = 'percept_ai_uploads';
-        const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_FORM_ID';
-        const RECIPIENT_EMAIL = 'your-email@gmail.com'; // Your email to receive applications
-
-        // ========================================
-        // TOGGLE JOB SECTION - EXISTING FUNCTIONALITY
-        // ========================================
-        function toggleJob(headerElement) {
-            const jobCard = headerElement.parentElement;
-            const jobContent = jobCard.querySelector('.job-content');
-            const jobToggle = headerElement.querySelector('.job-toggle');
-            
-            // Close all other open jobs
-            document.querySelectorAll('.job-content.open').forEach(content => {
-                if (content !== jobContent) {
-                    content.classList.remove('open');
-                    content.parentElement.querySelector('.job-toggle').classList.remove('active');
-                }
-            });
-            
-            jobContent.classList.toggle('open');
-            jobToggle.classList.toggle('active');
-        }
-
-        // ========================================
-        // FILE NAME DISPLAY - NEW FUNCTIONALITY
-        // ========================================
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', function(e) {
-                const fileName = e.target.files[0]?.name || '';
-                const fileNameDisplay = this.parentElement.parentElement.querySelector('.file-name');
-                
-                if (fileNameDisplay && fileName) {
-                    fileNameDisplay.textContent = '✓ ' + fileName;
-                    fileNameDisplay.style.color = 'var(--success)';
-                }
-            });
-        });
-
-        // ========================================
-        // CLOUDINARY FILE UPLOAD - NEW FUNCTIONALITY
-        // ========================================
-        async function uploadToCloudinary(file) {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-            try {
-                const response = await fetch(
-                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`,
-                    {
-                        method: 'POST',
-                        body: formData
-                    }
-                );
-
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.error?.message || 'Upload failed');
-                }
-
-                const data = await response.json();
-                return data.secure_url;
-            } catch (error) {
-                console.error('Cloudinary upload error:', error);
-                throw new Error('File upload failed: ' + error.message);
-            }
-        }
-
-        // ========================================
-        // FORM SUBMISSION HANDLER - ENHANCED WITH BACKEND
-        // ========================================
-        document.querySelectorAll('.job-application-form').forEach(form => {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const formId = this.dataset.formId;
-                const position = this.dataset.position;
-                const statusEl = document.getElementById(`status-${formId}`);
-                const submitBtn = this.querySelector('.btn');
-                
-                // Show loading state
-                statusEl.classList.add('show', 'loading');
-                statusEl.textContent = '⏳ Uploading files and sending application...';
-                submitBtn.disabled = true;
-
-                try {
-                    // Get form data
-                    const name = this.querySelector(`input[name="name"]`).value;
-                    const email = this.querySelector(`input[name="email"]`).value;
-                    const phone = this.querySelector(`input[name="phone"]`).value;
-                    const location = this.querySelector(`input[name="location"]`).value;
-                    const linkedin = this.querySelector(`input[name="linkedin"]`).value || 'Not provided';
-                    const github = this.querySelector(`input[name="github"]`).value || 'Not provided';
-                    const message = this.querySelector(`input[name="message"]`).value || 'None';
-
-                    // Get file inputs
-                    const cvInput = this.querySelector(`input[name="cv"]`);
-                    const coverInput = this.querySelector(`input[name="cover"]`);
-
-                    // Validate files are present
-                    if (!cvInput.files[0]) {
-                        throw new Error('CV file is required');
-                    }
-                    if (!coverInput.files[0]) {
-                        throw new Error('Cover letter is required');
-                    }
-
-                    // Validate file sizes (10MB max per file)
-                    const MAX_FILE_SIZE = 10 * 1024 * 1024;
-                    if (cvInput.files[0].size > MAX_FILE_SIZE) {
-                        throw new Error('CV file is too large (max 10MB)');
-                    }
-                    if (coverInput.files[0].size > MAX_FILE_SIZE) {
-                        throw new Error('Cover letter is too large (max 10MB)');
-                    }
-
-                    statusEl.textContent = '📤 Uploading CV...';
-
-                    // Upload CV
-                    const cvUrl = await uploadToCloudinary(cvInput.files[0]);
-
-                    statusEl.textContent = '📤 Uploading cover letter...';
-
-                    // Upload Cover Letter
-                    const coverUrl = await uploadToCloudinary(coverInput.files[0]);
-
-                    statusEl.textContent = '📧 Sending application...';
-
-                    // Prepare formatted message for email
-                    const emailMessage = `
-Position Applied: ${position}
-
---- APPLICANT INFORMATION ---
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Location: ${location}
-LinkedIn: ${linkedin}
-GitHub: ${github}
-
---- UPLOADED DOCUMENTS ---
-CV: ${cvUrl}
-Cover Letter: ${coverUrl}
-
---- ADDITIONAL INFORMATION ---
-${message}
-
----
-Application submitted on: ${new Date().toLocaleString()}
-                    `.trim();
-
-                    // Send to Formspree
-                    const formDataToSend = new FormData();
-                    formDataToSend.append('name', name);
-                    formDataToSend.append('email', email);
-                    formDataToSend.append('phone', phone);
-                    formDataToSend.append('location', location);
-                    formDataToSend.append('linkedin', linkedin);
-                    formDataToSend.append('github', github);
-                    formDataToSend.append('position', position);
-                    formDataToSend.append('cv_url', cvUrl);
-                    formDataToSend.append('cover_letter_url', coverUrl);
-                    formDataToSend.append('additional_info', message);
-                    formDataToSend.append('submission_date', new Date().toISOString());
-
-                    const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-                        method: 'POST',
-                        body: formDataToSend,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (!response.ok) {
-                        const error = await response.json();
-                        throw new Error(error.error || 'Form submission failed');
-                    }
-
-                    // Success state
-                    statusEl.classList.remove('loading');
-                    statusEl.classList.add('success');
-                    statusEl.textContent = '✓ Application submitted successfully! We\'ll review your application and get back to you soon.';
-                    
-                    // Reset form
-                    this.reset();
-                    
-                    // Clear file names
-                    document.querySelectorAll(`#${formId} .file-name`).forEach(el => {
-                        el.textContent = '';
-                    });
-
-                    // Re-enable button after 5 seconds
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                    }, 5000);
-
-                } catch (error) {
-                    // Error state
-                    statusEl.classList.remove('loading');
-                    statusEl.classList.add('error');
-                    statusEl.textContent = '✗ Error: ' + error.message + '. Please try again or contact us directly.';
-                    
-                    // Re-enable button
-                    submitBtn.disabled = false;
-                    
-                    console.error('Application submission error:', error);
-                }
-            });
-        });
-
-        // ========================================
-        // VALIDATION - CHECK CONFIGURATION ON PAGE LOAD
-        // ========================================
-        window.addEventListener('load', function() {
-            // Check if credentials are set
-            if (CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUDINARY_CLOUD_NAME') {
-                console.warn('⚠️ Please update CLOUDINARY_CLOUD_NAME in the script');
-            }
-            if (FORMSPREE_FORM_ID === 'YOUR_FORMSPREE_FORM_ID') {
-                console.warn('⚠️ Please update FORMSPREE_FORM_ID in the script');
-            }
-        });
-
-    </script>
 </body>
 </html>
